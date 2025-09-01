@@ -22,6 +22,9 @@ class Goalkeeper:
         self.angular_velocity = 0
         self.rotation_damping = 0.95
 
+        self.sprite = pygame.image.load("assets/gfx/chars/goalie.png").convert_alpha()
+        self.sprite = pygame.transform.scale(self.sprite, (self.width, self.height))
+
     def jump_to(self, target_x):
         direction_x = target_x - self.pos.x
         force = min(1.0, abs(direction_x) / 200)
@@ -78,7 +81,13 @@ class Goalkeeper:
         pygame.draw.rect(gk_surface, (70, 130, 180), (0, arm_y, self.width // 3, self.height // 4), border_radius=5)
         pygame.draw.rect(gk_surface, (70, 130, 180), (self.width * 2 // 3, arm_y, self.width // 3, self.height // 4),border_radius=5)
 
-        rotated_surface = pygame.transform.rotate(gk_surface, self.angle)
-        rect = rotated_surface.get_rect(center=self.rect.center)
+        ## tentativa falha de fazer o goleiro 'tombar'
+        rotated_sprite = pygame.transform.rotate(self.sprite, self.angle)
+        rotated_rect = rotated_sprite.get_rect(center=(int(self.pos.x), int(self.pos.y)))
+        surface.blit(rotated_sprite, rotated_rect.topleft)
 
-        surface.blit(rotated_surface, rect.topleft)
+    def reset_position(self):
+        self.pos.x = self.goal.goal_area.centerx
+        self.pos.y = self.goal.goal_area.top + self.height // 2
+        self.rect.center = (int(self.pos.x), int(self.pos.y))
+        self.velocity = pygame.Vector2(0, 0)

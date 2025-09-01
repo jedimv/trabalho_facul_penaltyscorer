@@ -17,7 +17,7 @@ class SplashScreen:
     def draw(self, surface):
         surface.fill(BLACK)
         font = pygame.font.SysFont(None, 80)
-        text = font.render("Penalty Fever Clone", True, WHITE)
+        text = font.render("Helamam", True, WHITE)
         rect = text.get_rect(center=(self.game.screen.get_width() // 2, self.game.screen.get_height() // 2))
         surface.blit(text, rect)
 

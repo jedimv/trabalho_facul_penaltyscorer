@@ -32,10 +32,5 @@ class TournamentSelection:
             btn.draw(surface)
 
     def handle_event(self, event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                self.selected = max(0, self.selected - 1)
-            elif event.key == pygame.K_DOWN:
-                self.selected = min(len(self.tournaments) - 1, self.selected + 1)
         for btn in self.buttons:
             btn.handle_event(event)

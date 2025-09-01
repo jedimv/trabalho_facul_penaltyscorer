@@ -3,7 +3,6 @@ import sys
 from screens.splash import SplashScreen
 from constants import FPS
 
-
 class Game:
     def __init__(self):
         pygame.init()
